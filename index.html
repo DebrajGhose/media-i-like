@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer"> <!-- some image hosts (the Jagex wiki) refuse pictures requested from another site -->
-<title>Movies | Debraj Ghose</title>
-<meta name="description" content="Films, books, games and music Debraj Ghose has watched, read, played, listened to and liked, grouped by year or by director, author and developer.">
-<meta property="og:title" content="Movies | Debraj Ghose">
-<meta property="og:description" content="Films, books, games and music I've watched, read, played, listened to and liked, grouped by year or by director, author and developer.">
+<title>Movies and Shows | Debraj Ghose</title>
+<meta name="description" content="Films, shows, books, games and music Debraj Ghose has watched, read, played, listened to and liked, grouped by year or by director, creator, author and developer.">
+<meta property="og:title" content="Movies and Shows | Debraj Ghose">
+<meta property="og:description" content="Films, shows, books, games and music I've watched, read, played, listened to and liked, grouped by year or by director, creator, author and developer.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://debrajghose.com/movies/">
 <script>
@@ -102,6 +102,9 @@
     color: var(--ink); font-size: var(--label-size); line-height: 1.35; font-weight: 600;
     font-variant-numeric: tabular-nums; overflow-wrap: break-word;
   }
+  /* "Movies" and "Shows" split the Movies and Shows tab; each heading takes a whole row. */
+  .part { flex: 0 0 100%; margin: 0 0 -12px; color: var(--ink); font-size: 20px; line-height: 1.4; font-weight: 600; }
+  .part ~ .part { margin-top: 16px; }
   .by-person .cluster h2 { min-height: calc(2 * 1.35em); } /* names can take two lines; keep posters level */
   .count { margin-left: 2px; color: var(--muted); font-size: 13px; font-weight: 400; }
   .cards { display: flex; flex-wrap: wrap; gap: 20px var(--gap); margin: 0; padding: 0; list-style: none; }
@@ -153,7 +156,7 @@
 <main class="page">
   <header>
     <div class="top">
-      <h1 id="heading">Movies</h1>
+      <h1 id="heading">Movies and Shows</h1>
       <div class="toggle" id="theme" role="group" aria-label="Colour theme" hidden>
         <button type="button" data-theme="light" aria-pressed="true">Light</button>
         <button type="button" data-theme="dark" aria-pressed="false">Dark</button>
@@ -161,7 +164,7 @@
     </div>
     <div class="controls" hidden>
       <div class="toggle" role="group" aria-label="Section">
-        <button type="button" data-section="movies" aria-pressed="true">Movies</button>
+        <button type="button" data-section="movies" aria-pressed="true">Movies and Shows</button>
         <button type="button" data-section="books" aria-pressed="false">Books</button>
         <button type="button" data-section="games" aria-pressed="false">Games</button>
         <button type="button" data-section="music" aria-pressed="false">Music</button>
@@ -171,14 +174,14 @@
         <span id="group-label">Group by</span>
         <div class="toggle" role="group" aria-labelledby="group-label">
           <button type="button" data-mode="year" aria-pressed="false">Year</button>
-          <button type="button" data-mode="person" aria-pressed="true">Director</button>
+          <button type="button" data-mode="person" aria-pressed="true">Creator</button>
         </div>
       </div>
     </div>
   </header>
 
   <div id="films" class="by-person"></div>
-  <noscript><p>Turn on JavaScript to see the films, books, games and music.</p></noscript>
+  <noscript><p>Turn on JavaScript to see the films, shows, books, games and music.</p></noscript>
 
   <footer>Posters, covers, game art and artist photos from <a href="https://en.wikipedia.org/">Wikipedia</a>, <a href="https://commons.wikimedia.org/">Wikimedia Commons</a> and <a href="https://openlibrary.org/">Open Library</a>. Artist photos are by their photographers under Creative Commons licences.</footer>
 </main>
@@ -207,6 +210,7 @@ const FILMS = [
   {"title": "Parasite", "year": 2019, "directors": ["Bong Joon Ho"], "slug": "parasite-2019", "original": "기생충", "poster": "https://upload.wikimedia.org/wikipedia/en/5/53/Parasite_%282019_film%29.png", "w": 265, "h": 378, "wiki": "Parasite (2019 film)"},
   {"title": "Jojo Rabbit", "year": 2019, "directors": ["Taika Waititi"], "slug": "jojo-rabbit", "poster": "https://upload.wikimedia.org/wikipedia/en/a/a2/Jojo_Rabbit_%282019%29_poster.jpg", "w": 220, "h": 326, "wiki": "Jojo Rabbit"},
   {"title": "Glass", "year": 2019, "directors": ["M. Night Shyamalan"], "slug": "glass-2019", "poster": "https://upload.wikimedia.org/wikipedia/en/0/01/Glass_%282019_poster%29.png", "w": 220, "h": 329, "wiki": "Glass (2019 film)"},
+  {"title": "Zombieland: Double Tap", "year": 2019, "directors": ["Ruben Fleischer"], "slug": "zombieland-double-tap", "poster": "https://upload.wikimedia.org/wikipedia/en/1/15/Zombieland_Double_Tap_teaser_poster.jpg", "w": 220, "h": 330, "wiki": "Zombieland: Double Tap"},
   {"title": "The Ballad of Buster Scruggs", "year": 2018, "directors": ["Joel Coen", "Ethan Coen"], "slug": "the-ballad-of-buster-scruggs", "poster": "https://upload.wikimedia.org/wikipedia/en/1/13/The_Ballad_of_Buster_Scruggs_%282018_poster%29.png", "w": 250, "h": 370, "wiki": "The Ballad of Buster Scruggs"},
   {"title": "Shoplifters", "year": 2018, "directors": ["Hirokazu Kore-eda"], "slug": "shoplifters", "original": "万引き家族", "poster": "https://upload.wikimedia.org/wikipedia/en/c/c9/Shoplifters_%28film%29.jpg", "w": 220, "h": 311, "wiki": "Shoplifters (film)"},
   {"title": "Isle of Dogs", "year": 2018, "directors": ["Wes Anderson"], "slug": "isle-of-dogs-2018", "poster": "https://upload.wikimedia.org/wikipedia/en/2/23/IsleOfDogsFirstLook.jpg", "w": 220, "h": 344, "wiki": "Isle of Dogs (film)"},
@@ -247,6 +251,7 @@ const FILMS = [
   {"title": "Thirst", "year": 2009, "directors": ["Park Chan-wook"], "slug": "thirst-2009", "original": "박쥐", "poster": "https://upload.wikimedia.org/wikipedia/en/b/b1/Thirstposter.jpg", "w": 263, "h": 378, "wiki": "Thirst (2009 film)"},
   {"title": "Triangle", "year": 2009, "directors": ["Christopher Smith"], "slug": "triangle", "poster": "https://upload.wikimedia.org/wikipedia/en/b/b4/Triangle_%28Christopher_Smith%29.jpg", "w": 259, "h": 389, "wiki": "Triangle (2009 British film)"},
   {"title": "Watchmen", "year": 2009, "directors": ["Zack Snyder"], "slug": "watchmen", "poster": "https://upload.wikimedia.org/wikipedia/en/b/bc/Watchmen_film_poster.jpg", "w": 259, "h": 384, "wiki": "Watchmen (2009 film)"},
+  {"title": "Zombieland", "year": 2009, "directors": ["Ruben Fleischer"], "slug": "zombieland", "poster": "https://upload.wikimedia.org/wikipedia/en/a/a3/Zombieland-poster.jpg", "w": 258, "h": 406, "wiki": "Zombieland"},
   {"title": "It Might Get Loud", "year": 2008, "directors": ["Davis Guggenheim"], "slug": "it-might-get-loud", "poster": "https://upload.wikimedia.org/wikipedia/en/b/b9/Itmightgetloud.PNG", "w": 259, "h": 385, "wiki": "It Might Get Loud"},
   {"title": "Burn After Reading", "year": 2008, "directors": ["Ethan Coen", "Joel Coen"], "slug": "burn-after-reading", "poster": "https://upload.wikimedia.org/wikipedia/en/4/42/Burn_After_Reading.png", "w": 220, "h": 326, "wiki": "Burn After Reading"},
   {"title": "Cloverfield", "year": 2008, "directors": ["Matt Reeves"], "slug": "cloverfield", "poster": "https://upload.wikimedia.org/wikipedia/en/f/f1/Cloverfield_theatrical_poster.jpg", "w": 259, "h": 383, "wiki": "Cloverfield"},
@@ -312,10 +317,12 @@ const BOOKS = [
   {"title": "Life of Pi", "year": 2001, "authors": ["Yann Martel"], "slug": "life-of-pi", "poster": "https://upload.wikimedia.org/wikipedia/en/4/45/Life_of_Pi_cover.png", "w": 256, "h": 389, "wiki": "Life of Pi"},
   {"title": "A Storm of Swords", "year": 2000, "authors": ["George R. R. Martin"], "slug": "a-storm-of-swords", "series": "A Song of Ice and Fire, book 3", "poster": "https://upload.wikimedia.org/wikipedia/en/2/24/AStormOfSwords.jpg", "w": 262, "h": 379, "wiki": "A Storm of Swords"},
   {"title": "The Fifth Elephant", "year": 1999, "authors": ["Terry Pratchett"], "slug": "the-fifth-elephant", "series": "Discworld", "poster": "https://upload.wikimedia.org/wikipedia/en/7/7d/The-fifth-elephant-1.jpg", "w": 259, "h": 391, "wiki": "The Fifth Elephant"},
+  {"title": "20th Century Boys", "year": 1999, "authors": ["Naoki Urasawa"], "slug": "20th-century-boys", "series": "manga", "poster": "https://upload.wikimedia.org/wikipedia/en/e/e2/20thcenturyboys01.jpg", "w": 261, "h": 374, "wiki": "20th Century Boys"},
   {"title": "A Clash of Kings", "year": 1998, "authors": ["George R. R. Martin"], "slug": "a-clash-of-kings", "series": "A Song of Ice and Fire, book 2", "poster": "https://upload.wikimedia.org/wikipedia/en/3/39/AClashOfKings.jpg", "w": 201, "h": 290, "wiki": "A Clash of Kings"},
   {"title": "Wizard and Glass", "year": 1997, "authors": ["Stephen King"], "slug": "wizard-and-glass", "series": "The Dark Tower, book 4", "poster": "https://upload.wikimedia.org/wikipedia/en/7/7f/Wizard_and_Glass.jpg", "w": 269, "h": 370, "wiki": "The Dark Tower IV: Wizard and Glass"},
   {"title": "A Game of Thrones", "year": 1996, "authors": ["George R. R. Martin"], "slug": "a-game-of-thrones", "series": "A Song of Ice and Fire, book 1", "poster": "https://upload.wikimedia.org/wikipedia/en/9/93/AGameOfThrones.jpg", "w": 259, "h": 385, "wiki": "A Game of Thrones"},
   {"title": "The Prestige", "year": 1995, "authors": ["Christopher Priest"], "slug": "the-prestige-novel", "poster": "https://upload.wikimedia.org/wikipedia/en/3/30/Theprestigecover.jpg", "w": 259, "h": 385, "wiki": "The Prestige (novel)"},
+  {"title": "Monster", "year": 1994, "authors": ["Naoki Urasawa"], "slug": "monster-manga", "series": "manga", "poster": "https://upload.wikimedia.org/wikipedia/en/0/00/Monster_manga_volume_1_cover.jpg", "w": 268, "h": 372, "wiki": "Monster (manga)"},
   {"title": "Forward the Foundation", "year": 1993, "authors": ["Isaac Asimov"], "slug": "forward-the-foundation", "series": "Foundation series", "poster": "https://upload.wikimedia.org/wikipedia/en/9/93/Forward_the_Foundation_cover.jpg", "w": 270, "h": 381, "wiki": "Forward the Foundation"},
   {"title": "The Waste Lands", "year": 1991, "authors": ["Stephen King"], "slug": "the-waste-lands", "series": "The Dark Tower, book 3", "poster": "https://upload.wikimedia.org/wikipedia/en/4/49/The_Waste_Lands.jpg", "w": 260, "h": 382, "wiki": "The Dark Tower III: The Waste Lands"},
   {"title": "Prelude to Foundation", "year": 1988, "authors": ["Isaac Asimov"], "slug": "prelude-to-foundation", "series": "Foundation series", "poster": "https://upload.wikimedia.org/wikipedia/en/8/8a/Prelude_to_Foundation_cover.jpg", "w": 262, "h": 387, "wiki": "Prelude to Foundation"},
@@ -436,6 +443,21 @@ const MUSIC = [
   {"title": "Cloudkicker", "slug": "cloudkicker", "poster": "https://coverartarchive.org/release-group/9cc8487a-c3f0-4764-b966-2f6b207cc164/front-500", "w": 500, "h": 500},
 ];
 
+// Shows work like films, with "creators" in place of "directors" and "year" the year the show first aired. For anime,
+// "creators" is the director of the series, and "series": "anime" is shown when you hover over the poster.
+const SHOWS = [
+  {"title": "What We Do in the Shadows", "year": 2019, "creators": ["Jemaine Clement"], "slug": "what-we-do-in-the-shadows-tv", "poster": "https://upload.wikimedia.org/wikipedia/en/3/31/What_We_Do_in_the_Shadows_Title_Card.jpg", "w": 274, "h": 155, "wiki": "What We Do in the Shadows (TV series)"},
+  {"title": "Better Call Saul", "year": 2015, "creators": ["Vince Gilligan", "Peter Gould"], "slug": "better-call-saul", "poster": "https://upload.wikimedia.org/wikipedia/en/1/1c/Better_Call_Saul_season_1.jpg", "w": 250, "h": 355, "wiki": "Better Call Saul"},
+  {"title": "Silicon Valley", "year": 2014, "creators": ["Mike Judge"], "slug": "silicon-valley-tv", "poster": "https://upload.wikimedia.org/wikipedia/en/3/33/Silicon_valley_title.png", "w": 400, "h": 225, "wiki": "Silicon Valley (TV series)"},
+  {"title": "Attack on Titan", "year": 2013, "creators": ["Tetsurō Araki"], "slug": "attack-on-titan-anime", "series": "anime", "original": "進撃の巨人", "wiki": "Attack on Titan (TV series)"},
+  {"title": "Another", "year": 2012, "creators": ["Tsutomu Mizushima"], "slug": "another-anime", "series": "anime", "original": "アナザー", "poster": "https://upload.wikimedia.org/wikipedia/en/c/cc/Another_%28novel%29_Cover.JPG", "w": 255, "h": 389, "wiki": "Another (novel)"},
+  {"title": "Fullmetal Alchemist: Brotherhood", "year": 2009, "creators": ["Yasuhiro Irie"], "slug": "fullmetal-alchemist-brotherhood", "series": "anime", "original": "鋼の錬金術師 FULLMETAL ALCHEMIST", "wiki": "Fullmetal Alchemist: Brotherhood"},
+  {"title": "Breaking Bad", "year": 2008, "creators": ["Vince Gilligan"], "slug": "breaking-bad", "poster": "https://upload.wikimedia.org/wikipedia/en/6/61/BreakingBadS1DVD.jpg", "w": 270, "h": 368, "wiki": "Breaking Bad"},
+  {"title": "Death Note", "year": 2006, "creators": ["Tetsurō Araki"], "slug": "death-note-anime", "series": "anime", "original": "デスノート", "wiki": "Death Note (2006 TV series)"},
+  {"title": "Ergo Proxy", "year": 2006, "creators": ["Shūkō Murase"], "slug": "ergo-proxy", "series": "anime", "original": "エルゴプラクシー", "poster": "https://upload.wikimedia.org/wikipedia/en/0/07/Ergo_Proxy_Set_1_cover.jpg", "w": 265, "h": 375, "wiki": "Ergo Proxy"},
+  {"title": "Fullmetal Alchemist", "year": 2003, "creators": ["Seiji Mizushima"], "slug": "fullmetal-alchemist-2003", "series": "anime", "original": "鋼の錬金術師", "poster": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Fullmetal_Alchemist_2003_logo.png", "w": 640, "h": 267, "wiki": "Fullmetal Alchemist (TV series)"},
+];
+
 // Treat the Coen brothers as one director when grouping (their early films credit Joel alone).
 const SAME_DIRECTOR = { "Joel Coen": "Joel & Ethan Coen", "Ethan Coen": "Joel & Ethan Coen" };
 
@@ -445,16 +467,16 @@ const sectionButtons = document.querySelectorAll("button[data-section]");
 const personButton = document.querySelector("button[data-mode=person]");
 const groupControl = document.querySelector(".group");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-// Directors for a film, authors for a book, developers for a game.
-const peopleOf = f => [...new Set((f.directors || f.authors || f.developers || []).map(d => SAME_DIRECTOR[d] || d))];
+// Directors for a film, creators for a show, authors for a book, developers for a game.
+const peopleOf = f => [...new Set((f.directors || f.creators || f.authors || f.developers || []).map(d => SAME_DIRECTOR[d] || d))];
 const SECTIONS = {
-  movies: { items: FILMS, heading: "Movies", person: "Director", noun: "films" },
+  movies: { items: [...FILMS, ...SHOWS], parts: [["Movies", FILMS], ["Shows", SHOWS]], heading: "Movies and Shows", person: "Creator", noun: "titles" },
   books: { items: BOOKS, heading: "Books", person: "Author", noun: "books" },
   games: { items: GAMES, heading: "Games", person: "Developer", noun: "games" },
   music: { items: MUSIC, heading: "Music", noun: "artists", ungrouped: true },
-  all: { items: [...FILMS, ...BOOKS, ...GAMES], heading: "Movies, books and games", person: "Creator", noun: "titles" }
+  all: { items: [...FILMS, ...SHOWS, ...BOOKS, ...GAMES], heading: "Movies, shows, books and games", person: "Creator", noun: "titles" }
 };
-const bySlug = new Map([...FILMS, ...BOOKS, ...GAMES, ...MUSIC].map(f => [f.slug, f]));
+const bySlug = new Map([...FILMS, ...SHOWS, ...BOOKS, ...GAMES, ...MUSIC].map(f => [f.slug, f]));
 
 function el(tag, className, text) {
   const node = document.createElement(tag);
@@ -478,7 +500,7 @@ function makeCard(f) {
     img.decoding = "async";
     img.src = f.poster;
     // Posters, logos and square pictures are shown whole; wide artist photos are cropped to fill the card.
-    const isArtist = !(f.directors || f.authors || f.developers);
+    const isArtist = !(f.directors || f.creators || f.authors || f.developers);
     if (isArtist && f.w / f.h > 1.2) frame.classList.add("photo");
     else if (f.w / f.h > 0.85) {
       frame.classList.add("wide");
@@ -493,7 +515,7 @@ function makeCard(f) {
   frame.append(standIn);
   card.append(frame, el("span", "title", f.title));
   // An artist has no year or creator to show.
-  if (f.directors || f.authors || f.developers) {
+  if (f.directors || f.creators || f.authors || f.developers) {
     card.append(
       el("span", "meta meta-person", peopleOf(f).join(", ") || "Director TBA"),
       el("span", "meta meta-year", f.year || "TBA")
@@ -533,7 +555,7 @@ function groupsFor(mode, items, ungrouped) {
   return list;
 }
 
-const cards = new Map([...FILMS, ...BOOKS, ...GAMES, ...MUSIC].map(f => [f.slug, makeCard(f)]));
+const cards = new Map([...FILMS, ...SHOWS, ...BOOKS, ...GAMES, ...MUSIC].map(f => [f.slug, makeCard(f)]));
 let section = null;
 let mode = null;
 
@@ -545,7 +567,15 @@ function render(nextSection, next, animate) {
 
   const used = new Set();
   const clusters = document.createDocumentFragment();
-  for (const group of groupsFor(next, sec.items, sec.ungrouped)) {
+  // A tab with parts (Movies and Shows) gets a heading for each part, each grouped on its own.
+  const groups = sec.parts
+    ? sec.parts.flatMap(([label, items]) => [{ label }, ...groupsFor(next, items)])
+    : groupsFor(next, sec.items, sec.ungrouped);
+  for (const group of groups) {
+    if (group.label) {
+      clusters.append(el("h2", "part", group.label));
+      continue;
+    }
     const section = el("section", "cluster");
     const h2 = el("h2", null, group.name);
     if (group.films.length > 1) {
